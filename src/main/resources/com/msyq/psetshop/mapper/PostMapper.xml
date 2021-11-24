@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msyq.psetshop.mapper.PostMapper">
+    <resultMap id="BaseResultMap" type="com.msyq.psetshop.pojo.Post">
+        <!--@mbg.generated-->
+        <!--@Table post-->
+        <id column="p_id" jdbcType="INTEGER" property="pId"/>
+        <result column="p_name" jdbcType="VARCHAR" property="pName"/>
+        <result column="fk_u_id" jdbcType="INTEGER" property="fkUId"/>
+        <result column="fk_t_id" jdbcType="VARCHAR" property="fkTId"/>
+        <result column="fk_type_id" jdbcType="VARCHAR" property="fkTypeId"/>
+        <result column="p_img" jdbcType="VARCHAR" property="pImg"/>
+        <result column="p_content" jdbcType="VARCHAR" property="pContent"/>
+        <result column="p_issue_date" jdbcType="TIMESTAMP" property="pIssueDate"/>
+        <result column="p_date" jdbcType="TIMESTAMP" property="pDate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        p_id, p_name, fk_u_id, fk_t_id, fk_type_id, p_img, p_content, p_issue_date, p_date
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from post
+        where p_id = #{pId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete
+        from post
+        where p_id = #{pId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="p_id" keyProperty="pId" parameterType="com.msyq.psetshop.pojo.Post"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into post (p_name, fk_u_id, fk_t_id,
+                          fk_type_id, p_img, p_content,
+                          p_issue_date, p_date)
+        values (#{pName,jdbcType=VARCHAR}, #{fkUId,jdbcType=INTEGER}, #{fkTId,jdbcType=VARCHAR},
+                #{fkTypeId,jdbcType=VARCHAR}, #{pImg,jdbcType=VARCHAR}, #{pContent,jdbcType=VARCHAR},
+                #{pIssueDate,jdbcType=TIMESTAMP}, #{pDate,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="p_id" keyProperty="pId" parameterType="com.msyq.psetshop.pojo.Post"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into post
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pName != null">
+                p_name,
+            </if>
+            <if test="fkUId != null">
+                fk_u_id,
+            </if>
+            <if test="fkTId != null">
+                fk_t_id,
+            </if>
+            <if test="fkTypeId != null">
+                fk_type_id,
+            </if>
+            <if test="pImg != null">
+                p_img,
+            </if>
+            <if test="pContent != null">
+                p_content,
+            </if>
+            <if test="pIssueDate != null">
+                p_issue_date,
+            </if>
+            <if test="pDate == null">
+                p_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="pName != null">
+                #{pName,jdbcType=VARCHAR},
+            </if>
+            <if test="fkUId != null">
+                #{fkUId,jdbcType=INTEGER},
+            </if>
+            <if test="fkTId != null">
+                #{fkTId,jdbcType=VARCHAR},
+            </if>
+            <if test="fkTypeId != null">
+                #{fkTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="pImg != null">
+                #{pImg,jdbcType=VARCHAR},
+            </if>
+            <if test="pContent != null">
+                #{pContent,jdbcType=VARCHAR},
+            </if>
+            <if test="pIssueDate != null">
+                #{pIssueDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pDate != null">
+                now(),
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.msyq.psetshop.pojo.Post">
+        <!--@mbg.generated-->
+        update post
+        <set>
+            <if test="pName != null">
+                p_name = #{pName,jdbcType=VARCHAR},
+            </if>
+            <if test="fkUId != null">
+                fk_u_id = #{fkUId,jdbcType=INTEGER},
+            </if>
+            <if test="fkTId != null">
+                fk_t_id = #{fkTId,jdbcType=VARCHAR},
+            </if>
+            <if test="fkTypeId != null">
+                fk_type_id = #{fkTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="pImg != null">
+                p_img = #{pImg,jdbcType=VARCHAR},
+            </if>
+            <if test="pContent != null">
+                p_content = #{pContent,jdbcType=VARCHAR},
+            </if>
+            <if test="pIssueDate != null">
+                p_issue_date = #{pIssueDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pDate != null">
+                p_date = #{pDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where p_id = #{pId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.msyq.psetshop.pojo.Post">
+        <!--@mbg.generated-->
+        update post
+        set p_name       = #{pName,jdbcType=VARCHAR},
+            fk_u_id      = #{fkUId,jdbcType=INTEGER},
+            fk_t_id      = #{fkTId,jdbcType=VARCHAR},
+            fk_type_id   = #{fkTypeId,jdbcType=VARCHAR},
+            p_img        = #{pImg,jdbcType=VARCHAR},
+            p_content    = #{pContent,jdbcType=VARCHAR},
+            p_issue_date = #{pIssueDate,jdbcType=TIMESTAMP},
+            p_date       = #{pDate,jdbcType=TIMESTAMP}
+        where p_id = #{pId,jdbcType=INTEGER}
+    </update>
+
+    <!--auto generated by MybatisCodeHelper on 2021-10-05-->
+    <select id="findByAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from post
+        <where>
+            <if test="pId != null">
+                and p_id = #{pId,jdbcType=INTEGER}
+            </if>
+            <if test="pName != null">
+                and p_name like #{pName,jdbcType=VARCHAR}
+            </if>
+            <if test="fkUId != null">
+                and fk_u_id = #{fkUId,jdbcType=INTEGER}
+            </if>
+            <if test="fkTId != null">
+                and fk_t_id like #{fkTId,jdbcType=VARCHAR}
+            </if>
+            <if test="fkTypeId != null">
+                and fk_type_id like #{fkTypeId,jdbcType=VARCHAR}
+            </if>
+            <if test="pImg != null">
+                and p_img = #{pImg,jdbcType=VARCHAR}
+            </if>
+            <if test="pContent != null">
+                and p_content = #{pContent,jdbcType=VARCHAR}
+            </if>
+            <if test="pIssueDate != null">
+                and p_issue_date = #{pIssueDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="pDate != null">
+                and p_date = #{pDate,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2021-10-05-->
+    <select id="listByAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from post
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2021-10-12-->
+    <select id="findAllByFkUId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from post
+        where fk_u_id = #{fkUId,jdbcType=INTEGER}
+        order by p_date desc
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2021-10-12-->
+    <select id="findAllByFkUIdOrderLike" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from post
+        where p_id in (
+                select fk_p_id
+                from post_like
+                where fk_p_id in (
+                        select post.p_id
+                        from post
+                        where post.fk_u_id = #{fkUId,jdbcType=INTEGER}
+                        )
+                order by fk_p_id
+                )
+    </select>
+
+
+    <!--auto generated by MybatisCodeHelper on 2021-10-12-->
+    <select id="findAllByFkUIdOrderCollect" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from post
+        where p_id in (
+                select fk_p_id
+                from post_like
+                where fk_p_id in (
+                        select post.p_id
+                        from post
+                        where post.fk_u_id = 1001
+                        )
+                order by fk_p_id
+                )
+    </select>
+
+
+    <!--auto generated by MybatisCodeHelper on 2021-10-12-->
+    <select id="findByAllOrderLike" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from post
+        where p_id in (
+                select fk_p_id
+                from post_like
+                where pl_tf = 1
+                group by pl_tf
+                )
+    </select>
+</mapper>

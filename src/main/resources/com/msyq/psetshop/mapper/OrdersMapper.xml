@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msyq.psetshop.mapper.OrdersMapper">
+    <resultMap id="BaseResultMap" type="com.msyq.psetshop.pojo.Orders">
+        <!--@mbg.generated-->
+        <!--@Table orders-->
+        <id column="o_id" jdbcType="INTEGER" property="oId"/>
+        <result column="fk_g_id" jdbcType="INTEGER" property="fkGId"/>
+        <result column="fk_u_id" jdbcType="INTEGER" property="fkUId"/>
+        <result column="o_price" jdbcType="INTEGER" property="oPrice"/>
+        <result column="o_datea" jdbcType="TIMESTAMP" property="oDatea"/>
+        <result column="o_dateb" jdbcType="TIMESTAMP" property="oDateb"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        o_id, fk_g_id, fk_u_id, o_price, o_datea, o_dateb
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where o_id = #{oId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete
+        from orders
+        where o_id = #{oId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="o_id" keyProperty="oId" parameterType="com.msyq.psetshop.pojo.Orders"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into orders (fk_g_id, fk_u_id, o_price,
+                            o_datea, o_dateb)
+        values (#{fkGId,jdbcType=INTEGER}, #{fkUId,jdbcType=INTEGER}, #{oPrice,jdbcType=INTEGER},
+                #{oDatea,jdbcType=TIMESTAMP}, #{oDateb,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="insertSelective" keyColumn="o_id" keyProperty="oId" parameterType="com.msyq.psetshop.pojo.Orders"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into orders
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fkGId != null">
+                fk_g_id,
+            </if>
+            <if test="fkUId != null">
+                fk_u_id,
+            </if>
+            <if test="oPrice != null">
+                o_price,
+            </if>
+            <if test="oDatea == null">
+                o_datea,
+            </if>
+            <if test="oDateb != null">
+                o_dateb,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fkGId != null">
+                #{fkGId,jdbcType=INTEGER},
+            </if>
+            <if test="fkUId != null">
+                #{fkUId,jdbcType=INTEGER},
+            </if>
+            <if test="oPrice != null">
+                #{oPrice,jdbcType=INTEGER},
+            </if>
+            <if test="oDatea == null">
+                now(),
+            </if>
+            <if test="oDateb != null">
+                #{oDateb,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelectiveCopy" keyColumn="o_id" keyProperty="oId" parameterType="com.msyq.psetshop.pojo.Orders"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into orders
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fkGId != null">
+                fk_g_id,
+            </if>
+            <if test="fkUId != null">
+                fk_u_id,
+            </if>
+            <if test="oPrice != null">
+                o_price,
+            </if>
+            <if test="oDatea == null">
+                o_datea,
+            </if>
+            <if test="oDateb == null">
+                o_dateb,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fkGId != null">
+                #{fkGId,jdbcType=INTEGER},
+            </if>
+            <if test="fkUId != null">
+                #{fkUId,jdbcType=INTEGER},
+            </if>
+            <if test="oPrice != null">
+                #{oPrice,jdbcType=INTEGER},
+            </if>
+            <if test="oDatea == null">
+                now(),
+            </if>
+            <if test="oDateb == null">
+                now(),
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.msyq.psetshop.pojo.Orders">
+        <!--@mbg.generated-->
+        update orders
+        <set>
+            <if test="fkGId != null">
+                fk_g_id = #{fkGId,jdbcType=INTEGER},
+            </if>
+            <if test="fkUId != null">
+                fk_u_id = #{fkUId,jdbcType=INTEGER},
+            </if>
+            <if test="oPrice != null">
+                o_price = #{oPrice,jdbcType=INTEGER},
+            </if>
+            <if test="oDatea != null">
+                o_datea = #{oDatea,jdbcType=TIMESTAMP},
+            </if>
+            <if test="oDateb != null">
+                o_dateb = #{oDateb,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where o_id = #{oId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.msyq.psetshop.pojo.Orders">
+        <!--@mbg.generated-->
+        update orders
+        set fk_g_id = #{fkGId,jdbcType=INTEGER},
+            fk_u_id = #{fkUId,jdbcType=INTEGER},
+            o_price = #{oPrice,jdbcType=INTEGER},
+            o_datea = #{oDatea,jdbcType=TIMESTAMP},
+            o_dateb = #{oDateb,jdbcType=TIMESTAMP}
+        where o_id = #{oId,jdbcType=INTEGER}
+    </update>
+
+    <!--auto generated by MybatisCodeHelper on 2021-10-05-->
+    <select id="listByAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2021-10-08-->
+    <select id="findAllByFkUId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where fk_u_id = #{fkUId,jdbcType=INTEGER}
+    </select>
+
+
+    <!--auto generated by MybatisCodeHelper on 2021-10-08-->
+    <select id="findAllByFkUIdIng" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where fk_u_id = #{fkUId,jdbcType=INTEGER}
+        and o_dateb is null
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2021-10-08-->
+    <select id="findAllByFkUIdEd" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders
+        where fk_u_id = #{fkUId,jdbcType=INTEGER}
+        and o_dateb
+    </select>
+
+</mapper>
